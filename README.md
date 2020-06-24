@@ -23,5 +23,5 @@ Website developed via React.js.
 
 ### Demo App and CD pipeline
 Website is deployed to Heroku. Any commits to `master/develop` branches will automatically trigger new deployments.
-* `master` branch is deployed to [top-rated-movie-list-prod](https://dashboard.heroku.com/apps)
-* `develop` branch is deployed to [top-rated-movie-list-staging](https://dashboard.heroku.com/apps)
+* `develop` branch is deployed to [top-rated-movie-list-staging](https://top-rated-movie-list-staging.herokuapp.com)
+* `master` branch is deployed to [top-rated-movie-list-prod](https://top-rated-movie-list-prod.herokuapp.com)
