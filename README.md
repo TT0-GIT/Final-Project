@@ -1,4 +1,4 @@
-# Top Rated Todo List
+# Top Rated Movie List
 Website developed via React.js.
 
 ## Instruction
