@@ -1,11 +1,11 @@
-import React from 'react';
+import React from "react";
+import "./styles.css";
+import HomePage from "./Component/Router/Router.jsx";
 
-function App() {
+export default function App() {
   return (
     <div className="App">
-      <h1>Hello Team 2</h1>
+      <HomePage />
     </div>
   );
 }
-
-export default App;
