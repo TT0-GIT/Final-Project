@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
+ 
 import Navigation from "./component/Navigation.js";
 import LikeList from "./component/LikeList.js";
 import MovieList from "./component/MovieList.js";

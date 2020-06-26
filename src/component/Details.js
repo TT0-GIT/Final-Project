@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
+ 
 import { Modal, Card, Container, Row, Col } from "react-bootstrap";
 export default function Details(props) {
   const { id } = props;

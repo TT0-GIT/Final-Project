@@ -1,5 +1,5 @@
 import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
+ 
 import { Row, Col, Image, Button, Spinner } from "react-bootstrap";
 import "./MovieList.css";
 

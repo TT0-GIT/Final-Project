@@ -1,5 +1,5 @@
 import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
+ 
 import { Row, Col, Image } from "react-bootstrap";
 import Details from "./Details.js";
 const LikeList = props => {
