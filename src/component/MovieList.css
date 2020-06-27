@@ -1,8 +1,57 @@
+.page-header {
+  padding:10px;
+}
+
 .pagination {
     display: flex;
     justify-content: space-around;
     align-items: center;
     margin-top:5px;
     margin-bottom:5px;
+}
 
-  }
+.movie-list {
+  text-align: center;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.title {
+  margin-top: 5px;
+}
+
+.icon {
+  width:2vw;
+  height:auto;
+  animation: spin 2s linear infinite; 
+
+}
+
+@keyframes spin { 
+  100% { 
+      transform: rotate(360deg); 
+  } 
+} 
+
+.add-block-button {
+  margin:10px;
+}
+
+.vote-count,.average-score,.overview {
+  text-align: left;
+  margin-bottom: 5px;
+}
+
+.info {
+  width: 100%;
+  border: 0px;
+  text-align: justify;
+  display: inline-flex;
+  justify-content: space-between;
+  padding: 10px;
+  border-radius: 5px;
+  columns: #3d1414;
+  font-size: small;
+}
+
+.info:focus {outline:0;}

@@ -1,5 +1,4 @@
-Link {
-    color:white;
-    text-decoration: none;
-    font-size: large;
+.logo {
+    width:auto;
+    height:5vh;
 }
