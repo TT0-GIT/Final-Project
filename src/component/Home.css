@@ -1,0 +1,12 @@
+.link {
+  color: goldenrod;
+  text-align: center;
+  font-style: oblique;
+  font-size: 100%;
+}
+.Carousel1 {
+  width: 40%;
+  position: absolute;
+  left: 30%;
+  margin-top: 10%;
+}
