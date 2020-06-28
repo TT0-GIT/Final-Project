@@ -7,17 +7,18 @@ import MovieList from "./component/MovieList.js";
 import BlockList from "./component/BlockList.js";
 import Home from "./component/Home.js";
 
-function App() {
+const App = () => {
   const [items, setItems] = useState([]);
+  const [totalPages, setTotalPages] = useState("")
   const [pagination, setPagination] = useState({
     page: 1,
     prev: true,
     next: false
   });
-
   const [likeList, setLikeList] = useState([]);
   const [blockList, setBlockList] = useState([]);
   const [isLoaded, setLoaded] = useState(false);
+  
   useEffect(() => {
     async function fetchItems() {
       const data = await fetch(
@@ -27,46 +28,25 @@ function App() {
       );
 
       const items = await data.json();
+      setTotalPages(items.total_pages);
       setItems([...items.results]);
+
     }
     fetchItems();
     setLoaded(true);
   }, [pagination.page]);
 
-  const handlePrev = () => {
-    setPagination({
-      page: pagination.page - 1,
-      prev: pagination.page - 1 !== 1 ? false : true
-    });
-    setLoaded(false);
-  };
-
-  const handleNext = () => {
-    setPagination({
-      page: pagination.page + 1,
-      next: pagination.page + 1 !== 373 ? false : true
-    });
-    setLoaded(false);
-  };
-
   const addLike = item => {
-    if (likeList.find(movie => movie.id === item.id) === undefined) {
-      setLikeList([...likeList, item]);
-    }
-  };
+      setLikeList([...likeList, item])
+  }
 
   const addBlock = item => {
-    if (blockList.find(movie => movie.id === item.id) === undefined) {
-      setBlockList([...blockList, item]);
+    setBlockList([...blockList, item])
+    if (likeList.find(movie => movie.id === item.id)) {
+      const newLikeList = [...likeList].filter(movie=>movie.id!==item.id)
+      setLikeList(newLikeList)
     }
   };
-
-  let blockId = new Set(
-    blockList.map(item => {
-      return item.id;
-    })
-  );
-  let filterItems = items.filter(item => !blockId.has(item.id));
 
   return (
     <Router>
@@ -79,14 +59,16 @@ function App() {
           <Route exact path="/movie">
             <MovieList
               isLoaded={isLoaded}
+              setLoaded ={setLoaded}
+              items={items}
+              setItems={setItems}
               pagination={pagination}
+              totalPages={totalPages}
+              setPagination={setPagination}
               likeList={likeList}
               blockList={blockList}
-              handlePrev={handlePrev}
-              handleNext={handleNext}
               addLike={addLike}
               addBlock={addBlock}
-              filterItems={filterItems}
             />
           </Route>
           <Route path="/like">

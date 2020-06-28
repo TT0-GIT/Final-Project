@@ -1,7 +1,7 @@
 import React from "react";
- 
 import { Row, Col, Image } from "react-bootstrap";
 import Details from "./Details.js";
+
 const BlockList = props => {
   const { blockList, setBlockList, addLike } = props;
   const delBlock = item => {
