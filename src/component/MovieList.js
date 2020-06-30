@@ -2,6 +2,7 @@ import React from 'react';
 import { Row, Col, Image, Button, Collapse, Spinner } from 'react-bootstrap';
 import movie_icon from '../image/movie_icon.png'
 import './MovieList.css';
+import SortButton from "./Sortbutton.js";
 
 const MovieList = props => {
   const {
@@ -55,6 +56,10 @@ const MovieList = props => {
           <Button size="sm" variant="outline-dark" onClick={handleNext}>next</Button>
         }
       </div>
+      <SortButton items={items} setItems={setItems} id="title" />
+      <SortButton items={items} setItems={setItems} id="vote_count" />
+      <SortButton items={items} setItems={setItems} id="vote_average" />
+      <SortButton items={items} setItems={setItems} id="release_date" />
       <div className="movie">
         <Row xs={1} md={4} lg={5}>
           {filterItems.map(item =>
@@ -93,7 +98,7 @@ const MovieList = props => {
             </Col>
           )}
         </Row>
-      </div>
+    </div>
     </div>
   )
 }
