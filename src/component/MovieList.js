@@ -2,11 +2,12 @@ import React from 'react';
 import { Row, Col, Image, Button, Collapse, Spinner } from 'react-bootstrap';
 import movie_icon from '../image/movie_icon.png'
 import './MovieList.css';
+import SortButton from "./Sortbutton.js";
 
 const MovieList = props => {
   const {
     items, setItems, totalPages, pagination, setPagination,
-    addLike, likeList, addBlock, blockList, isLoaded, 
+    addLike, likeList, addBlock, blockList, isLoaded,
   } = props
 
   const handlePrev = () => {
@@ -50,6 +51,12 @@ const MovieList = props => {
           <Button size="sm" variant="outline-dark" disabled>no more</Button> :
           <Button size="sm" variant="outline-dark" onClick={handleNext} disabled={!isLoaded}>next</Button>
         }
+      </div>
+      <div className="sort">
+        <SortButton items={items} setItems={setItems} id="title" />
+        <SortButton items={items} setItems={setItems} id="vote_count" />
+        <SortButton items={items} setItems={setItems} id="vote_average" />
+        <SortButton items={items} setItems={setItems} id="release_date" />
       </div>
       {!isLoaded ? (
         <Spinner className="loading" animation="border" size="xl" />

@@ -9,7 +9,7 @@ import Home from "./component/Home.js";
 
 const App = () => {
   const [items, setItems] = useState([]);
-  const [totalPages, setTotalPages] = useState("")
+  const [totalPages, setTotalPages] = useState("");
   const [pagination, setPagination] = useState({
     page: 1,
     prev: true,
@@ -34,26 +34,26 @@ const App = () => {
   }, [pagination.page]);
 
   const addLike = item => {
-    setLikeList([...likeList, item])
-  }
+    setLikeList([...likeList, item]);
+  };
 
   const addBlock = item => {
-    setBlockList([...blockList, item])
+    setBlockList([...blockList, item]);
     if (likeList.find(movie => movie.id === item.id)) {
-      const newLikeList = [...likeList].filter(movie => movie.id !== item.id)
-      setLikeList(newLikeList)
+      const newLikeList = [...likeList].filter(movie => movie.id !== item.id);
+      setLikeList(newLikeList);
     }
   };
 
   return (
     <Router>
       <div className="App">
-        <Navigation likeList={likeList} blockList={blockList} />
         <Switch>
           <Route exact path="/">
             <Home items={items} />
           </Route>
           <Route exact path="/movie">
+          <div> <Navigation likeList={likeList} blockList={blockList} />
             <MovieList
               isLoaded={isLoaded}
               items={items}
@@ -65,26 +65,28 @@ const App = () => {
               blockList={blockList}
               addLike={addLike}
               addBlock={addBlock}
-            />
+            /></div>
           </Route>
           <Route path="/like">
+          <div> <Navigation likeList={likeList} blockList={blockList} />
             <LikeList
               likeList={likeList}
               setLikeList={setLikeList}
               addBlock={addBlock}
-            />
+            /></div>
           </Route>
           <Route path="/block">
+          <div> <Navigation likeList={likeList} blockList={blockList} />
             <BlockList
               blockList={blockList}
               setBlockList={setBlockList}
               addLike={addLike}
-            />
+            /></div>
           </Route>
         </Switch>
       </div>
     </Router>
   );
-}
+};
 
 export default App;

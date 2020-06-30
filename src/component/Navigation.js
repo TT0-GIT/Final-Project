@@ -32,14 +32,21 @@ const Navigation = ({ likeList, blockList }) => {
             </h3>
             <ul className={sideBar ? "nav-active nav-links" : "nav-links"}>
                 {navEnum.map(item => {
-                    if (active === item.display)
-                        return (<li key={item.display}><Link className="active link" onClick={() => setActive(item.display)} to={item.link}>{item.display}{' '}{
-                            (item.badge && item.badge.value > 0) && <Badge pill variant={item.badge.variant}>{item.badge.value}</Badge>
-                        }</Link></li>);
+                    if (active === item.link)
+                        return (
+                            <li key={item.display}>
+                            <Link className="active nav-link" onClick={() => setActive(item.link)} to={item.link}>{item.display}{' '}
+                            {(item.badge && item.badge.value > 0) && <Badge pill variant={item.badge.variant}>{item.badge.value}</Badge>}
+                            </Link>
+                            </li>
+                            );
                     else
-                        return (<li key={item.display}><Link className="link" onClick={() => setActive(item.display)} to={item.link}>{item.display}{' '}{
-                            (item.badge && item.badge.value > 0) && <Badge pill variant={item.badge.variant}>{item.badge.value}</Badge>
-                        }</Link></li>);
+                        return (
+                            <li key={item.display}><Link className="nav-link" onClick={() => setActive(item.display)} to={item.link}>{item.display}{' '}
+                            {(item.badge && item.badge.value > 0) && <Badge pill variant={item.badge.variant}>{item.badge.value}</Badge>}
+                            </Link>
+                            </li>
+                            );
                 })}
 
             </ul>
