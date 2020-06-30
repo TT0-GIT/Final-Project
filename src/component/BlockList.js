@@ -18,8 +18,8 @@ const BlockList = props => {
   };
 
   return (
-    <div>
-      <h1>Block List</h1>
+    <div className="block-list">
+      <h2 className="page-header">Block List</h2>
       <Row xs={1} md={4} lg={5} className="block-list">
         {blockList.map(item => (
           <Col key={item.id}>
@@ -49,7 +49,7 @@ const BlockList = props => {
               </span>
               <Details id={item.id} />
             </div>
-            <p>{item.title}</p>
+            <p><b>{item.title}</b></p>
             <p>{item.release_date}</p>
           </Col>
         ))}

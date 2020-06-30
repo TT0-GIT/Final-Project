@@ -30,9 +30,6 @@ export default function SortButton(props) {
       return (dateA > dateB) ? asdOrder : (asdOrder * -1);
     })
 
-    
-
-    //else if  other sorting ways
     setItems(sortIt);
     setAsdOrder(-1 * asdOrder);
   };

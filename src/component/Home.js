@@ -17,30 +17,30 @@ const Home = props => {
     <div className="Carousel1">
       <Carousel activeIndex={index} onSelect={handleSelect}>
         <Carousel.Item>
-          <img
+          <img className="home-image"
             src={`https://image.tmdb.org/t/p/w500${imOne}`}
             alt="Third Slide"
           />
         </Carousel.Item>
         <Carousel.Item>
-          <img
+          <img className="home-image"
             src={`https://image.tmdb.org/t/p/w500${imTwo}`}
             alt="Third Slide"
           />
         </Carousel.Item>
         <Carousel.Item>
-          <img
+          <img className="home-image"
             src={`https://image.tmdb.org/t/p/w500${imThree}`}
             alt="Third Slide"
           />
         </Carousel.Item>
         <Carousel.Item>
-          <img
+          <img className="home-image"
             src="https://tse1.mm.bing.net/th?id=OIP.nsQ_CfYGJyRADWb1BERmqQAAAA&pid=Api&P=0&w=204&h=153"
             alt="Fourth Slider"
           />
 
-          <Link className="link" to="/movie">
+          <Link className="home-link" to="/movie">
             Explore More...
           </Link>
         </Carousel.Item>

@@ -21,18 +21,16 @@ const App = () => {
 
   useEffect(() => {
     async function fetchItems() {
+      setLoaded(false)
       const data = await fetch(
-        `https://api.themoviedb.org/3/movie/top_rated?api_key=767a17491866d99d6e9e4da2bd8f8507&language=en-US&page=${
-          pagination.page
-        }`
+        `https://api.themoviedb.org/3/movie/top_rated?api_key=767a17491866d99d6e9e4da2bd8f8507&language=en-US&page=${pagination.page}`
       );
-
       const items = await data.json();
       setTotalPages(items.total_pages);
       setItems([...items.results]);
+      setLoaded(true)
     }
     fetchItems();
-    setLoaded(true);
   }, [pagination.page]);
 
   const addLike = item => {
@@ -58,7 +56,6 @@ const App = () => {
           <div> <Navigation likeList={likeList} blockList={blockList} />
             <MovieList
               isLoaded={isLoaded}
-              setLoaded={setLoaded}
               items={items}
               setItems={setItems}
               pagination={pagination}
