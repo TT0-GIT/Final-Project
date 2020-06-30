@@ -19,19 +19,47 @@ const App = () => {
   const [blockList, setBlockList] = useState([]);
   const [isLoaded, setLoaded] = useState(false);
 
-  useEffect(() => {
-    async function fetchItems() {
-      setLoaded(false)
-      const data = await fetch(
-        `https://api.themoviedb.org/3/movie/top_rated?api_key=767a17491866d99d6e9e4da2bd8f8507&language=en-US&page=${pagination.page}`
-      );
-      const items = await data.json();
-      setTotalPages(items.total_pages);
-      setItems([...items.results]);
-      setLoaded(true)
-    }
-    fetchItems();
-  }, [pagination.page]);
+   useEffect(() => {
+        const localItems = localStorage.getItem(`${pagination.page}`);
+        const localTotalPages = localStorage.getItem("totalPages");
+        const prevtime = localStorage.getItem(`${pagination.page}fetchtime`);
+        const curtime = new Date().getTime();
+        if (
+          localItems &&
+          localTotalPages &&
+          prevtime &&
+          curtime - prevtime <= 300000
+        ) {
+          setItems(JSON.parse(localItems));
+          setTotalPages(localTotalPages);
+          setLoaded(true);
+        } else {
+          let diff = curtime - prevtime;
+          if (prevtime && diff > 300000) {
+            localStorage.removeItem(`${pagination.page}`);
+            localStorage.removeItem(`${pagination.page}fetchtime`)
+          }
+          async function fetchItems() {
+            const data = await fetch(
+              `https://api.themoviedb.org/3/movie/top_rated?api_key=767a17491866d99d6e9e4da2bd8f8507&language=en-US&page=${
+                pagination.page
+              }`
+            );
+    
+            const items = await data.json();
+            setTotalPages(items.total_pages);
+            setItems([...items.results]);
+            localStorage.setItem(
+              `${pagination.page}`,
+              JSON.stringify(items.results)
+            );
+            localStorage.setItem("totalPages", items.total_pages);
+            localStorage.setItem(`${pagination.page}fetchtime`, new Date().getTime());
+          }
+          fetchItems();
+          setLoaded(true);
+        }
+      }, [pagination.page]);
 
   const addLike = item => {
     setLikeList([...likeList, item]);
