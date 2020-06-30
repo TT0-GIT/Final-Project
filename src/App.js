@@ -20,19 +20,50 @@ const App = () => {
   const [isLoaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    async function fetchItems() {
-      const data = await fetch(
-        `https://api.themoviedb.org/3/movie/top_rated?api_key=767a17491866d99d6e9e4da2bd8f8507&language=en-US&page=${
-          pagination.page
-        }`
-      );
+    const localItems = localStorage.getItem(`${pagination.page}`);
+    const localTotalPages = localStorage.getItem("totalPages");
+    const prevtime = localStorage.getItem("fetchtime");
+    const curtime = new Date().getTime();
+    if (
+      localItems &&
+      localTotalPages &&
+      prevtime &&
+      curtime - prevtime <= 10000
+    ) {
+      // I set the updating interval to 10 secs for easy check, you could change;
+      //&&localTotalPages===totalPages   not sure if we need to check either it keep the same or not.
+      setItems(JSON.parse(localItems));
+      setTotalPages(localTotalPages);
+      setLoaded(true);
+      console.log("still here");
+    } else {
+      let diff = curtime - prevtime;
+      if (prevtime && diff > 10000) {
+        localStorage.clear();
+        console.log(diff);
+      }
+      //  console.log(diff);*/
+      async function fetchItems() {
+        const data = await fetch(
+          `https://api.themoviedb.org/3/movie/top_rated?api_key=767a17491866d99d6e9e4da2bd8f8507&language=en-US&page=${
+            pagination.page
+          }`
+        );
 
-      const items = await data.json();
-      setTotalPages(items.total_pages);
-      setItems([...items.results]);
+        const items = await data.json();
+        setTotalPages(items.total_pages);
+        setItems([...items.results]);
+        localStorage.setItem(
+          `${pagination.page}`,
+          JSON.stringify(items.results)
+        );
+        localStorage.setItem("totalPages", items.total_pages);
+        localStorage.setItem(`fetchtime`, new Date().getTime());
+        console.log("has changed");
+      }
+      fetchItems();
+      setLoaded(true);
     }
-    fetchItems();
-    setLoaded(true);
   }, [pagination.page]);
 
   const addLike = item => {
@@ -50,12 +81,12 @@ const App = () => {
   return (
     <Router>
       <div className="App">
+        <Navigation likeList={likeList} blockList={blockList} />
         <Switch>
           <Route exact path="/">
             <Home items={items} />
           </Route>
           <Route exact path="/movie">
-          <div> <Navigation likeList={likeList} blockList={blockList} />
             <MovieList
               isLoaded={isLoaded}
               setLoaded={setLoaded}
@@ -68,23 +99,21 @@ const App = () => {
               blockList={blockList}
               addLike={addLike}
               addBlock={addBlock}
-            /></div>
+            />
           </Route>
           <Route path="/like">
-          <div> <Navigation likeList={likeList} blockList={blockList} />
             <LikeList
               likeList={likeList}
               setLikeList={setLikeList}
               addBlock={addBlock}
-            /></div>
+            />
           </Route>
           <Route path="/block">
-          <div> <Navigation likeList={likeList} blockList={blockList} />
             <BlockList
               blockList={blockList}
               setBlockList={setBlockList}
               addLike={addLike}
-            /></div>
+            />
           </Route>
         </Switch>
       </div>
