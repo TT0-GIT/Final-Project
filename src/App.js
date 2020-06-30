@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
- 
+
 import Navigation from "./component/Navigation.js";
 import LikeList from "./component/LikeList.js";
 import MovieList from "./component/MovieList.js";
@@ -18,32 +18,29 @@ const App = () => {
   const [likeList, setLikeList] = useState([]);
   const [blockList, setBlockList] = useState([]);
   const [isLoaded, setLoaded] = useState(false);
-  
+
   useEffect(() => {
     async function fetchItems() {
+      setLoaded(false)
       const data = await fetch(
-        `https://api.themoviedb.org/3/movie/top_rated?api_key=767a17491866d99d6e9e4da2bd8f8507&language=en-US&page=${
-          pagination.page
-        }`
+        `https://api.themoviedb.org/3/movie/top_rated?api_key=767a17491866d99d6e9e4da2bd8f8507&language=en-US&page=${pagination.page}`
       );
-
       const items = await data.json();
       setTotalPages(items.total_pages);
       setItems([...items.results]);
-
+      setLoaded(true)
     }
     fetchItems();
-    setLoaded(true);
   }, [pagination.page]);
 
   const addLike = item => {
-      setLikeList([...likeList, item])
+    setLikeList([...likeList, item])
   }
 
   const addBlock = item => {
     setBlockList([...blockList, item])
     if (likeList.find(movie => movie.id === item.id)) {
-      const newLikeList = [...likeList].filter(movie=>movie.id!==item.id)
+      const newLikeList = [...likeList].filter(movie => movie.id !== item.id)
       setLikeList(newLikeList)
     }
   };
@@ -54,12 +51,11 @@ const App = () => {
         <Navigation likeList={likeList} blockList={blockList} />
         <Switch>
           <Route exact path="/">
-            <Home />
+            <Home items={items} />
           </Route>
           <Route exact path="/movie">
             <MovieList
               isLoaded={isLoaded}
-              setLoaded ={setLoaded}
               items={items}
               setItems={setItems}
               pagination={pagination}

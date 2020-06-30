@@ -20,8 +20,8 @@ const LikeList = props => {
   };
 
   return (
-    <div>
-      <h1>Like List</h1>
+    <div className="like-list">
+      <h2 className="page-header">Like List</h2>
       <Row xs={1} md={4} lg={5} className="like-list">
         {likeList.map(item => (
           <Col key={item.id}>
@@ -51,7 +51,7 @@ const LikeList = props => {
               </span>
               <Details id={item.id} />
             </div>
-            <p>{item.title}</p>
+            <p><b>{item.title}</b></p>
             <p>{item.release_date}</p>
           </Col>
         ))}
