@@ -44,6 +44,7 @@
   padding: 10px;
   border-radius: 5px;
   font-size: small;
+  background-color: #eee;
 }
 
 .info:focus {outline:0;}
