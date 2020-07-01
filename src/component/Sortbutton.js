@@ -1,8 +1,8 @@
-
 import React, {useState} from "react"
+import { Button } from 'react-bootstrap';
 
 export default function SortButton(props) {
-  let { items, setItems, id } = props;
+  let { items, setItems, id, variant } = props;
   const [asdOrder, setAsdOrder] = useState(1)
 
   const IdSort = () => {
@@ -33,5 +33,5 @@ export default function SortButton(props) {
     setItems(sortIt);
     setAsdOrder(-1 * asdOrder);
   };
-  return <button onClick={IdSort}>Sort with {id}</button>;
+  return <Button size="sm" variant={variant} onClick={IdSort}>{id}</Button>;
 }

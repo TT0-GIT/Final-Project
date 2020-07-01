@@ -11,7 +11,7 @@ const Navigation = ({ likeList, blockList }) => {
         setSideBar(!sideBar)
     }
 
-    const [active, setActive] = useState("")
+    const [active, setActive] = useState("/movie")
 
     let numLike = likeList.length
     let numBlock = blockList.length
@@ -24,7 +24,7 @@ const Navigation = ({ likeList, blockList }) => {
     ]
 
     return (
-        <nav className="navigation">
+                <nav className="navigation">
             <h3 className="logo">
                 <Link className="link" to="/">
                     <img className="logo" src={logo} alt="logo" />
@@ -34,19 +34,19 @@ const Navigation = ({ likeList, blockList }) => {
                 {navEnum.map(item => {
                     if (active === item.link)
                         return (
-                            <li key={item.display}>
-                            <Link className="active nav-link" onClick={() => setActive(item.link)} to={item.link}>{item.display}{' '}
-                            {(item.badge && item.badge.value > 0) && <Badge pill variant={item.badge.variant}>{item.badge.value}</Badge>}
-                            </Link>
+                            <li key={item.link}>
+                                <Link className="active nav-link" onClick={() => setActive(item.link)} to={item.link}>{item.display}{' '}
+                                    {(item.badge && item.badge.value > 0) && <Badge pill variant={item.badge.variant}>{item.badge.value}</Badge>}
+                                </Link>
                             </li>
-                            );
+                        );
                     else
                         return (
-                            <li key={item.display}><Link className="nav-link" onClick={() => setActive(item.display)} to={item.link}>{item.display}{' '}
-                            {(item.badge && item.badge.value > 0) && <Badge pill variant={item.badge.variant}>{item.badge.value}</Badge>}
+                            <li key={item.link}><Link className="nav-link" onClick={() => setActive(item.link)} to={item.link}>{item.display}{' '}
+                                {(item.badge && item.badge.value > 0) && <Badge pill variant={item.badge.variant}>{item.badge.value}</Badge>}
                             </Link>
                             </li>
-                            );
+                        );
                 })}
 
             </ul>
@@ -55,7 +55,6 @@ const Navigation = ({ likeList, blockList }) => {
                 <div className="line2"></div>
                 <div className="line3"></div>
             </div>
-
         </nav>
     )
 }

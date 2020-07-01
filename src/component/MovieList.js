@@ -42,21 +42,22 @@ const MovieList = props => {
       <h2 className="page-header">Top Rated Movie List</h2>
       <div className="pagination">
         {pagination.prev ?
-          <Button size="sm" variant="outline-dark" disabled>no more</Button> :
-          <Button size="sm" variant="outline-dark" onClick={handlePrev} disabled={!isLoaded}>prev</Button>
+          <Button size="sm" variant="outline-success" disabled>no more</Button> :
+          <Button size="sm" variant="outline-success" onClick={handlePrev} disabled={!isLoaded}>prev</Button>
         }
         <p className="page-info">{pagination.page}/{totalPages}</p>
 
         {pagination.next ?
-          <Button size="sm" variant="outline-dark" disabled>no more</Button> :
-          <Button size="sm" variant="outline-dark" onClick={handleNext} disabled={!isLoaded}>next</Button>
+          <Button size="sm" variant="outline-success" disabled>no more</Button> :
+          <Button size="sm" variant="outline-success" onClick={handleNext} disabled={!isLoaded}>next</Button>
         }
       </div>
+      <span>Sort by:{'  '}</span>
       <div className="sort">
-        <SortButton items={items} setItems={setItems} id="title" />
-        <SortButton items={items} setItems={setItems} id="vote_count" />
-        <SortButton items={items} setItems={setItems} id="vote_average" />
-        <SortButton items={items} setItems={setItems} id="release_date" />
+        <SortButton items={items} setItems={setItems} variant="outline-info" id="title" />
+        <SortButton items={items} setItems={setItems} variant="outline-danger" id="vote_count" />
+        <SortButton items={items} setItems={setItems} variant="outline-dark" id="vote_average" />
+        <SortButton items={items} setItems={setItems} variant="outline-primary" id="release_date" />
       </div>
       {!isLoaded ? (
         <Spinner className="loading" animation="border" size="xl" />
@@ -101,7 +102,6 @@ const MovieList = props => {
             </Row>
           </div>
         )}
-
     </div>
   )
 }

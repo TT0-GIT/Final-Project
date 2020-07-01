@@ -43,8 +43,11 @@
   justify-content: space-between;
   padding: 10px;
   border-radius: 5px;
-  columns: #3d1414;
   font-size: small;
 }
 
 .info:focus {outline:0;}
+
+.sort {
+  margin-bottom: 2vh;
+}
