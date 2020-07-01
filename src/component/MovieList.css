@@ -1,0 +1,54 @@
+.pagination {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top:5px;
+    margin-bottom:5px;
+}
+
+.title {
+  margin-top: 5px;
+}
+.loading {
+  position: absolute;
+  top:50vh;
+  left:50vw;
+}
+.icon {
+  width:20px;
+  height:auto;
+  animation: spin 2s linear infinite; 
+}
+
+@keyframes spin { 
+  100% { 
+      transform: rotate(360deg); 
+  } 
+} 
+
+.add-block-button {
+  margin:10px;
+}
+
+.vote-count,.average-score,.overview {
+  text-align: left;
+  margin-bottom: 5px;
+}
+
+.info {
+  width: 100%;
+  border: 0px;
+  text-align: justify;
+  display: inline-flex;
+  justify-content: space-between;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: small;
+  background-color: #eee;
+}
+
+.info:focus {outline:0;}
+
+.sort {
+  margin-bottom: 2vh;
+}
