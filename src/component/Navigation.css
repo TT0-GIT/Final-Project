@@ -4,12 +4,16 @@
     height:5vh;
 }
 .navigation {
+    position: fixed;
+    top: 0;
+    width: 100%;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    min-height: 8vh;
+    height: 8vh;
     background-color: rgb(69, 76, 83);
     color:white;
+    z-index:1;
 }
 .nav-links {
     padding-top: 16px;
@@ -23,7 +27,7 @@
 }
 .nav-links li .nav-link{
     letter-spacing: 1px;
-    color:#bbb;
+    color:white;
     text-decoration: none;
     font-weight: bold;
     font-size: 16px;
@@ -32,7 +36,7 @@
 .nav-links li .active {
     color:white;
     font-size:18px;
-    border-bottom:2px solid white;
+    border-bottom:3px solid rgb(68, 167, 68);
 }
 .burger {
     display: none;
@@ -60,7 +64,8 @@
         right:0px;
         height:92vh;
         top:8vh;
-        background-color: rgba(73,79,82,0.9);
+        padding-bottom: 8vh;
+        background-color: rgba(0,0,0,0.5);
         display: flex;
         flex-direction: column;
         align-items: center;

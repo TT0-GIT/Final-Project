@@ -13,6 +13,7 @@ body {
   }
 
   .movie-list,.like-list,.block-list {
+    padding-top:8vh;
     padding-left: 5%;
     padding-right: 5%;
   }
@@ -20,6 +21,3 @@ body {
   .page-header {
     padding:10px;
   }
-
-
-  

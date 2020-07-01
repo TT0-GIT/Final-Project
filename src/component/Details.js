@@ -64,14 +64,14 @@ export default function Details(props) {
                     {production.map(item => {
                       let p =
                         item.logo_path !== null ? (
-                          <Card.Img
+                          <Card.Img key={item.id}
                             variant="top"
                             src={`https://image.tmdb.org/t/p/w500${
                               item.logo_path
                             }`}
                           />
                         ) : (
-                          <span>{item.name}</span>
+                          <span key={item.id}>{item.name}</span>
                         );
                       return p;
                     })}
