@@ -33,5 +33,5 @@ export default function SortButton(props) {
     setItems(sortIt);
     setAsdOrder(-1 * asdOrder);
   };
-  return <Button size="sm" variant={variant} onClick={IdSort}>{id}</Button>;
+return <Button size="sm" variant={variant} onClick={IdSort}>{id}{' '}{asdOrder===1 ? <span>&#8595;</span> : <span>&#8593;</span>}</Button>;
 }

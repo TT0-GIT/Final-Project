@@ -8,6 +8,9 @@
 
 .title {
   margin-top: 5px;
+  text-overflow:ellipsis; 
+  overflow:hidden; 
+  white-space:nowrap;
 }
 .loading {
   position: absolute;
@@ -50,5 +53,9 @@
 .info:focus {outline:0;}
 
 .sort {
+  margin-top: 5vh;
   margin-bottom: 2vh;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
