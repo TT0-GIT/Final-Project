@@ -52,7 +52,6 @@ const MovieList = props => {
           <Button size="sm" variant="outline-success" onClick={handleNext} disabled={!isLoaded}>next</Button>
         }
       </div>
-      <span>Sort by:{'  '}</span>
       <div className="sort">
         <SortButton items={items} setItems={setItems} variant="outline-info" id="title" />
         <SortButton items={items} setItems={setItems} variant="outline-danger" id="vote_count" />
